@@ -1,74 +1,41 @@
 const PORT = 8000
 
+// REQUIRES
 const express = require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 
-const Flashcards = require('./models/Flashcards')
+const webpack = require('webpack')
+const webpackDevMiddleware = require('webpack-dev-middleware')
+const webpackHotMiddleware = require('webpack-hot-middleware')
+const webpackConfig = require('./webpack.config')
 
+const flashcards = require('./routes/flashcardsRoutes')
+const random = require('./routes/randomRoutes')
+const test = require('./routes/testRoutes')
+
+// APP DECLARATION
 const app = express()
 
 // MIDDLEWARE
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.static('build'))
+
+// WEBPACK CONFIGURATION
+const compiler = webpack(webpackConfig)
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: webpackConfig.output.publicPath, noInfo: true
+}))
+app.use(webpackHotMiddleware(compiler))
 
 // ROUTES
-app.get('/flashcards', (req, res) => {
-  Flashcards.getAll((err, cards) => {
-    if (err) return res.status(400).send(err)
-    res.send(cards)
-  })
-})
+app.use('/flashcards', flashcards)
+app.use('/random', random)
+app.use('/test', test)
 
-app.get('/flashcards/:id', (req, res) => {
-  Flashcards.getById(req.params.id, (err, card) => {
-    if (err) return res.status(400).send(err)
-    res.send(card)
-  })
-})
-
-app.get('/random', (req, res) => {
-  Flashcards.getRandom(req.query, (err, cards) => {
-    if (err) return res.status(400).send(err)
-    res.send(cards)
-  })
-})
-
-app.get('/test', (req, res, next) => {
-  Flashcards.makeTest(req.query, err => {
-    if (err) return res.status(400).send(err)
-  })
-  next()
-}, (req, res) => {
-  Flashcards.testMe((err, QnA) => {
-    if (err) return res.status(400).send(err)
-    res.send(QnA)
-  })
-})
-
-app.post('/flashcards', (req, res) => {
-  Flashcards.create(req.body, err => {
-    if (err) return res.status(400).send(err)
-    res.send('New card added')
-  })
-})
-
-app.put('/flashcards/:id', (req, res) => {
-  Flashcards.replace(req.params, req.body, err => {
-    if (err) return res.status(400).send(err)
-    res.send('card replaced')
-  })
-})
-
-app.delete('/flashcards/:id', (req, res) => {
-  Flashcards.delete(req.params.id, err => {
-    if (err) return res.status(400).send(err)
-    res.send('card deleted')
-  })
-})
-
-// LISTENER
+// SERVER LISTEN
 app.listen(PORT, err => {
   console.log(err || `Server listening on port ${PORT}`)
 })
