@@ -141,18 +141,18 @@ exports.makeTest = function (query, cb) {
 }
 
 // GIVE TEST QUESTIONS TO THE USER
-exports.testMe = function (cb) {
-  exports.getTest((err, testItems) => {
-    if (err) return cb(err)
-
-    let allOptions = testItems[0].incorrectOptions
-    // allOptions.push(testItems[0].answer)
-    // let options = allOptions.map(option => `${option}\n`)
-
-    console.log('allOptions: ', typeof allOptions)
-
-    let QnA = `${testItems[0].question}\n${allOptions}`
-
-    cb(null, QnA)
-  })
-}
+// exports.testMe = function (cb) {
+//   exports.getTest((err, testItems) => {
+//     if (err) return cb(err)
+//
+//     let allOptions = testItems[0].incorrectOptions
+//     // allOptions.push(testItems[0].answer)
+//     // let options = allOptions.map(option => `${option}\n`)
+//
+//     console.log('allOptions: ', typeof allOptions)
+//
+//     let QnA = `${testItems[0].question}\n${allOptions}`
+//
+//     cb(null, QnA)
+//   })
+// }

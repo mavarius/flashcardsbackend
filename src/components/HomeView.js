@@ -4,12 +4,12 @@ import React, { Component } from 'react'
 // import UserStore from '../stores/UserStore'
 
 export default class HomeView extends Component {
-  constructor () {
-    super()
+  // constructor () {
+  //   super()
 
     // this.state = UserStore.getAll()
     // this._onChange = this._onChange.bind(this)
-  }
+  // }
 
   // componentWillMount () {
   //   UserStore.startListening(this._onChange)

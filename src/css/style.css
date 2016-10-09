@@ -1,0 +1,135 @@
+.navBtn {
+  padding: 0 10px;
+  border-right: 1px solid black;
+}
+
+.navBtn:last-of-type {
+  border: none;
+}
+
+.filterBtn {
+  border-radius: 100px;
+  margin: 10px;
+}
+
+.categories {
+  text-align: center;
+}
+
+.table {
+  margin-top: 40px;
+}
+
+.question {
+  font-weight: bold;
+}
+
+.category {
+  position: relative;
+  display: block;
+  color: lightgrey;
+  vertical-align: bottom;
+}
+
+.correct {
+  color: #31B0D5;
+}
+
+.option {
+  color: #C9302C;
+}
+
+/*FORMS*/
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
+    outline: none;
+}
+
+*:focus {
+    outline: none;
+}
+
+::-webkit-input-placeholder {
+   color: rgba(255, 255, 255, 0.4);
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: rgba(255, 255, 255, 0.4);
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: rgba(255, 255, 255, 0.4);
+}
+
+:-ms-input-placeholder {
+   color: rgba(255, 255, 255, 0.4);
+}
+
+/*MODAL*/
+
+.modalOpen {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-position: center;
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+  font-weight: bold;
+  padding: 5vh 5vw;
+  width: 80vw;
+  margin: 20vh auto;
+}
+
+.close {
+  font-size: 2em;
+  color: rgba(0, 0, 0, 0.25);
+  opacity: inherit;
+  text-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  margin-bottom: 20px;
+}
+
+.close:hover,
+.close:focus {
+  color: rgba(0, 0, 0, 1);
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  transition: text-shadow 0.1s, color 0.1s;
+  opacity: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btnModal {
+  background-color: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  color: #C46538;
+  position: absolute;
+  padding: 10px 40px;
+  bottom: 5vh;
+  left: 5vw;
+}
+
+.btnModal:hover,
+.btnModal:focus {
+  color: #C46538;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.25);
+  transition: all 0.1s;
+}
+
+.modalClosed {
+  display: none;
+}

@@ -4,15 +4,12 @@ const PORT = 8000
 const express = require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const path = require('path')
 
 const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const webpackConfig = require('./webpack.config')
-
-const flashcards = require('./routes/flashcardsRoutes')
-const random = require('./routes/randomRoutes')
-const test = require('./routes/testRoutes')
 
 // APP DECLARATION
 const app = express()
@@ -25,15 +22,14 @@ app.use(express.static('build'))
 
 // WEBPACK CONFIGURATION
 const compiler = webpack(webpackConfig)
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: webpackConfig.output.publicPath, noInfo: true
-}))
+app.use(webpackDevMiddleware(compiler, { publicPath: webpackConfig.output.publicPath, noInfo: true }))
 app.use(webpackHotMiddleware(compiler))
 
 // ROUTES
-app.use('/flashcards', flashcards)
-app.use('/random', random)
-app.use('/test', test)
+app.use('/api', require('./routes/api'))
+app.use('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build/index.html'))
+})
 
 // SERVER LISTEN
 app.listen(PORT, err => {
