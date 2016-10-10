@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import FlashcardActions from '../actions/FlashcardActions'
 
 export default class FlashcardCategories extends Component {
-
   _toggleFilter (e) {
     const { filter } = this.props.cats
 
@@ -15,6 +14,18 @@ export default class FlashcardCategories extends Component {
       newFilter.push(item)
     } else {
       newFilter.splice(index, 1)
+    }
+
+    FlashcardActions.filterFlashcards(newFilter)
+  }
+
+  _massSelect (select) {
+    const { categories } = this.props.cats
+
+    let newFilter = []
+
+    if (select === 'all') {
+      newFilter = categories.slice(0, categories.length)
     }
 
     FlashcardActions.filterFlashcards(newFilter)
@@ -39,6 +50,10 @@ export default class FlashcardCategories extends Component {
 
     return (
       <div className="row categories">
+        <div className="row">
+          <button onClick={() => this._massSelect('all')} className="btn btn-default filterBtn">select all</button>
+          <button onClick={() => this._massSelect('none')} className="btn btn-default filterBtn">deselect all</button>
+        </div>
         {cardCategories}
       </div>
     )

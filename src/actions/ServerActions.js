@@ -6,6 +6,13 @@ const ServerActions = {
       type: 'RECEIVE_FLASHCARDS',
       payload: { flashcards }
     })
+  },
+
+  receiveTestDeck (testDeck) {
+    AppDispatcher.dispatch({
+      type: 'RECEIVE_TEST_DECK',
+      payload: { testDeck }
+    })
   }
 }
 

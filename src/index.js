@@ -12,9 +12,8 @@ render(
   <Router history={browserHistory}>
 
     <Route path="/" component={Layout}>
-      <IndexRoute component={HomeView} />
+      <IndexRoute component={AdminView} />
       <Route path="/test" component={TestView} />
-      <Route path="/admin" component={AdminView} />
     </Route>
 
   </Router>,

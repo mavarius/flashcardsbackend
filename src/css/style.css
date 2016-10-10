@@ -39,6 +39,18 @@
   color: #C9302C;
 }
 
+.card {
+  width: 600px;
+  height: 300px;
+  padding: 50px;
+  position: relative;;
+  background-color: white;
+  border: 1px solid lightgrey;
+  color: black;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
 /*FORMS*/
 
 textarea:focus, input:focus{

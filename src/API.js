@@ -1,5 +1,6 @@
 import axios from 'axios'
 import ServerActions from './actions/ServerActions'
+import FlashcardActions from './actions/FlashcardActions'
 
 const API = {
   getFlashcards () {
@@ -26,6 +27,34 @@ const API = {
       .then(response => {
         console.log('response: ', response)
         this.getFlashcards()
+      })
+      .catch(console.error)
+  },
+
+  saveChanges (id, updatedFlashcard) {
+    axios.put(`/api/flashcards/${id}`, updatedFlashcard)
+      .then(response => {
+        console.log('response: ', response)
+        FlashcardActions.endEdit()
+        this.getFlashcards()
+      })
+      .catch(console.error)
+  },
+
+  makeTestDeck (deckFilter) {
+    axios.get('/api/test/make/' + (deckFilter || ''))
+      .then(response => {
+        this.getTest()
+      })
+      .catch(console.error)
+  },
+
+  getTest () {
+    axios.get('/api/test/')
+      .then(response => {
+        let testDeck = response.data
+        // console.log('get response: ', response)
+        ServerActions.receiveTestDeck(testDeck)
       })
       .catch(console.error)
   }

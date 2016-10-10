@@ -96,12 +96,12 @@ exports.create = function (newItem, cb) {
 }
 
 // UPDATE CARD
-exports.replace = function (filterId, updatedItem, cb) {
+exports.replace = function (filter, updatedItem, cb) {
   exports.getAll((err, items) => {
     if (err) return cb(err)
 
     items = items.map(item => {
-      if (item.id === filterId) {
+      if (item.id === filter.id) {
         let oldId = item.id
         item = updatedItem
         item.id = oldId
@@ -129,14 +129,12 @@ exports.makeTest = function (query, cb) {
   exports.getTest((err, testItems) => {
     if (err) return cb(err)
 
-    if (testItems.length === 0) {
-      exports.randomize(query, (err, randomized) => {
-        if (err) return cb(err)
-        exports.writeTest(randomized, cb)
-      })
-    }
+    exports.randomize(query, (err, randomized) => {
+      if (err) return cb(err)
+      exports.writeTest(randomized, cb)
+    })
 
-    return
+    cb(null, testItems)
   })
 }
 

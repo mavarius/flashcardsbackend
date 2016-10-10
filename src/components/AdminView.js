@@ -22,7 +22,7 @@ export default class AdminView extends Component {
       modal: InterfaceStore.getModalState(),
       flashcards: FlashcardStore.getFlashcards(),
       cats: FlashcardStore.getCats(),
-      testDeck: FlashcardStore.getTestDeck(),
+      test: FlashcardStore.getTestDeck(),
       currentlyEditing: FlashcardStore.getEditing()
       // userDetails: UserStore.getAll()
     }
@@ -53,7 +53,7 @@ export default class AdminView extends Component {
       modal: InterfaceStore.getModalState(),
       flashcards: FlashcardStore.getFlashcards(),
       cats: FlashcardStore.getCats(),
-      testDeck: FlashcardStore.getTestDeck(),
+      test: FlashcardStore.getTestDeck(),
       currentlyEditing: FlashcardStore.getEditing()
       // userDetails: UserStore.getAll()
     })
